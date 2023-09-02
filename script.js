@@ -66,13 +66,9 @@ play.addEventListener("click", () => {
   total_time.innerHTML = min.toPrecision(3);
   setInterval(() => {
     let b = audio.currentTime ;
-    let c = b/60 ;
     current_time.innerHTML =
-      b < 60
-        ? c.toLocaleString().split(".")[0]
-        : c.toLocaleString().split(".")[0] +
-          " : " +
-          c.toLocaleString().split(".")[1];
+      b > 60
+        ? b % 60 + ":" + b - (b*(b % 60)) : b;
     progress.value = (audio.currentTime / audio.duration) * 100;
   }, 1000);
   play.style.display = "none";
